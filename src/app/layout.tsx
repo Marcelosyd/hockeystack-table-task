@@ -1,5 +1,6 @@
 import '@/styles/globals.css'
 
+import { NavBar } from '@/components/NavBar'
 import type { Metadata } from 'next'
 import { Public_Sans } from 'next/font/google'
 
@@ -18,9 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={public_sans.className}>
-        <h1 className="text-2xl font-extrabold py-4 px-8 bg-[#282b32] shadow border-b border-gray-500 uppercase">
-          Hockeystack
-        </h1>
+        <NavBar />
         {children}
       </body>
     </html>
