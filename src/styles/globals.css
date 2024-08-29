@@ -17,17 +17,27 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  @apply bg-[#1c1d22] text-white;
+  min-height: 100vh;
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  ::-webkit-scrollbar {
+    height: 12px;
+    width: 12px;
+  }
+
+  ::-webkit-scrollbar-track {
+    border-radius: 100vh;
+    background-color: #b4b4b4;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #0009;
+    border-radius: 100vh;
   }
 }
