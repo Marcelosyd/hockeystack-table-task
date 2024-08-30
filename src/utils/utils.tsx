@@ -1,19 +1,10 @@
 import { HEADER_LABELS } from '@/app/constants'
 import { type FormattedData, type ResponseData } from '@/app/types'
+import { type Header } from '@/components/Tables/HtmlTable'
 import { type GridColDef } from '@mui/x-data-grid'
 
 export const formatData = (data: ResponseData[]) => {
   const formattedData: FormattedData[] = data.map((element) => {
-    const link = (
-      <a
-        href={`https://${element.url}`}
-        className="text-blue-500 hover:underline"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {element.url}
-      </a>
-    )
     const bounceCountPercentage = getBounceCountPercentage(element.bounceCount, element.totalCount)
     return {
       url: element.url,
@@ -52,7 +43,14 @@ const convertNumberToTime = (value: number) => {
   )
 }
 
-export const getHeaders = (data: FormattedData[]): GridColDef[] => {
+export const getHeaders = (data: FormattedData[]): Header[] => {
+  return Object.keys(data[0] ?? []).map((key) => ({
+    key: key,
+    label: HEADER_LABELS[key as keyof FormattedData],
+  }))
+}
+
+export const getGridHeaders = (data: FormattedData[]): GridColDef[] => {
   return Object.keys(data[0] ?? []).map((key, index) => ({
     field: key,
     headerName: HEADER_LABELS[key as keyof FormattedData],

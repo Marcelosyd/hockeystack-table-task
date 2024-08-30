@@ -2,9 +2,9 @@ import '@/styles/globals.css'
 
 import { NavBar } from '@/components/NavBar'
 import type { Metadata } from 'next'
-import { Public_Sans } from 'next/font/google'
+import { Inter } from 'next/font/google'
 
-const public_sans = Public_Sans({ subsets: ['latin'] })
+const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Hockeystack Table Task',
@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={public_sans.className}>
+      <body className={inter.className}>
         <NavBar />
         {children}
       </body>

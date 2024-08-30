@@ -14,6 +14,7 @@ const darkTheme = createTheme({
 })
 
 const LibraryTable = <T extends GridValidRowModel>({ data, headers }: TableProps<T>) => {
+  const rowsData = data.map((item, index) => ({ id: index, ...item }))
   return (
     <div className="text-gray-200 w-full">
       <h2 className="text-xl font-bold mb-4">MUI table</h2>
@@ -24,8 +25,7 @@ const LibraryTable = <T extends GridValidRowModel>({ data, headers }: TableProps
         <div className="p-4">
           <ThemeProvider theme={darkTheme}>
             <DataGrid
-              getRowId={(data) => data?.url}
-              rows={data}
+              rows={rowsData}
               columns={headers}
               initialState={{ pagination: { paginationModel: { pageSize: 10 } } }}
               pageSizeOptions={[10]}

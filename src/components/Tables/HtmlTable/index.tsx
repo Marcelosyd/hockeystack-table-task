@@ -1,15 +1,20 @@
 'use client'
-import { HEADER_LABELS } from '@/app/constants'
 import { useCallback, useMemo, useState, type ChangeEvent } from 'react'
 import { useSortData } from './hooks/useSortData'
 
 const ITEMS_PER_PAGE = 10
 
-interface TableProps<T> {
-  data: T[]
+export type Header = {
+  key: string
+  label: string | undefined
 }
 
-const HtmlTable = <T extends object>({ data }: TableProps<T>) => {
+interface TableProps<T> {
+  data: T[]
+  headers: Header[]
+}
+
+const HtmlTable = <T extends object>({ data, headers }: TableProps<T>) => {
   const [sort, setSort] = useState<{
     key: keyof T
     order: 'asc' | 'desc'
@@ -78,14 +83,14 @@ const HtmlTable = <T extends object>({ data }: TableProps<T>) => {
             <table className="min-w-full">
               <thead>
                 <tr className="border-b-2 border-[#34373e]">
-                  {Object.keys(data[0] ?? {}).map((key) => (
+                  {headers.map((header) => (
                     <th
-                      key={key}
+                      key={header.key}
                       className="py-3 px-4 max-w-xs text-left font-medium bg-[#22222a] text-gray-300 uppercase cursor-pointer whitespace-nowrap"
-                      onClick={() => handleSort(key as keyof T)}
+                      onClick={() => handleSort(header.key as keyof T)}
                     >
-                      {HEADER_LABELS[key]}
-                      {sort?.key === key &&
+                      {header.label}
+                      {sort?.key === header.key &&
                         sort.order &&
                         (sort.order === 'asc' ? <span> &#708;</span> : <span> &#709;</span>)}
                     </th>
