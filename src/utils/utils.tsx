@@ -1,17 +1,6 @@
-import { type FormattedData, type ResponseData } from '../types'
-
-export const getHeaderLabel = (key) => {
-  const headers: FormattedData['headers'] = [
-    { key: 'urlLink', label: 'URL', sortKey: 'url' },
-    { key: 'avgScrollPercentage', label: 'Scroll' },
-    { key: 'totalPageviewCount', label: 'Time' },
-    { key: 'bounceCount', label: 'Bounce' },
-    { key: 'startsWithCount', label: 'Enters' },
-    { key: 'endsWithCount', label: 'Exits' },
-    { key: 'totalCount', label: 'Pageviews' },
-    { key: 'totalVisitorCount', label: 'Visitors' },
-  ]
-}
+import { HEADER_LABELS } from '@/app/constants'
+import { type FormattedData, type ResponseData } from '@/app/types'
+import { type GridColDef } from '@mui/x-data-grid'
 
 export const formatData = (data: ResponseData[]) => {
   const formattedData: FormattedData[] = data.map((element) => {
@@ -27,14 +16,14 @@ export const formatData = (data: ResponseData[]) => {
     )
     const bounceCountPercentage = getBounceCountPercentage(element.bounceCount, element.totalCount)
     return {
-      urlData: { url: element.url, link },
-      totalCount: element.totalCount,
-      totalVisitorCount: element.totalVisitorCount,
+      url: element.url,
+      avgScrollPercentage: `${element.avgScrollPercentage}%`,
+      totalPageviewCount: convertNumberToTime(element.totalPageviewCount),
       bounceCount: bounceCountPercentage,
       startsWithCount: element.startsWithCount,
       endsWithCount: element.endsWithCount,
-      avgScrollPercentage: `${element.avgScrollPercentage}%`,
-      totalPageviewCount: convertNumberToTime(element.totalPageviewCount),
+      totalCount: element.totalCount,
+      totalVisitorCount: element.totalVisitorCount,
     }
   })
 
@@ -61,4 +50,14 @@ const convertNumberToTime = (value: number) => {
       useGrouping: false,
     })
   )
+}
+
+export const getHeaders = (data: FormattedData[]): GridColDef[] => {
+  return Object.keys(data[0] ?? []).map((key, index) => ({
+    field: key,
+    headerName: HEADER_LABELS[key as keyof FormattedData],
+    flex: 1,
+    minWidth: index === 0 ? 240 : 120,
+    sortable: true,
+  }))
 }

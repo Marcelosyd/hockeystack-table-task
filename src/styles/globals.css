@@ -33,11 +33,11 @@ body {
 
   ::-webkit-scrollbar-track {
     border-radius: 100vh;
-    background-color: #b4b4b4;
+    background-color: transparent;
   }
 
   ::-webkit-scrollbar-thumb {
-    background: #0009;
+    background: #515560;
     border-radius: 100vh;
   }
 }

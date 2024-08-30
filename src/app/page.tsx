@@ -1,18 +1,28 @@
 import HtmlTable from '@/components/Tables/HtmlTable'
+import LibraryTable from '@/components/Tables/LibraryTable'
+import { formatData, getHeaders } from '@/utils/utils'
+import { Divider } from '@mui/material'
 import { type FormattedData, type ResponseData } from './types'
-import { formatData } from './utils/utils'
 
 export default async function Home() {
   const response = await fetch('http://localhost:3000/api')
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const data: ResponseData[] = await response.json()
 
+  if (!data) return null
+
   const formattedData: FormattedData[] = formatData(data)
 
+  const headers = getHeaders(formattedData)
+
   return (
-    <main className="flex min-h-screen flex-col items-center px-8 pt-8 md:px-12 lg:px-24">
-      <div className="z-10 w-full max-w-7xl items-center justify-between font-normal text-sm lg:flex">
+    <main className="flex min-h-screen flex-col items-center mb-24 px-8 pt-8 md:px-12 lg:px-24">
+      <div className="z-10 w-full max-w-7xl items-center justify-between font-normal text-sm flex flex-col gap-12">
+        <div className="font-semibold text-lg">Table components examples</div>
+        <Divider color="#34373e" sx={{ height: 2, width: '90vw' }} />
         <HtmlTable data={formattedData} />
+        <Divider color="#34373e" sx={{ height: 2, width: '90vw' }} />
+        <LibraryTable data={formattedData} headers={headers} />
       </div>
     </main>
   )

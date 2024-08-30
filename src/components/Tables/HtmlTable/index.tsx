@@ -1,4 +1,5 @@
 'use client'
+import { HEADER_LABELS } from '@/app/constants'
 import { useCallback, useMemo, useState, type ChangeEvent } from 'react'
 import { useSortData } from './hooks/useSortData'
 
@@ -67,36 +68,36 @@ const HtmlTable = <T extends object>({ data }: TableProps<T>) => {
 
   return (
     <div className="text-gray-200 w-full">
+      <h2 className="text-xl font-bold mb-8">(Plain table)</h2>
       <div className="bg-[#282b32] rounded-xl">
-        <div className="flex items-center justify-between p-4 border-b border-[#34373e]">
-          <h1 className="text-xl font-bold">Pages</h1>
+        <div className="flex items-center justify-between p-4 border-b-4 border-[#34373e]">
+          <h3 className="text-xl font-bold">Pages</h3>
         </div>
         <div className="p-4">
-          <div className="overflow-x-auto ">
+          <div className="overflow-x-auto border-b-2 border-[#34373e] rounded-sm">
             <table className="min-w-full">
               <thead>
-                <tr className="border-b border-white">
+                <tr className="border-b-2 border-[#34373e]">
                   {Object.keys(data[0] ?? {}).map((key) => (
                     <th
                       key={key}
-                      className="py-3 px-4 max-w-xs text-left font-semibold bg-[#22222a] text-gray-300 uppercase cursor-pointer"
+                      className="py-3 px-4 max-w-xs text-left font-medium bg-[#22222a] text-gray-300 uppercase cursor-pointer whitespace-nowrap"
                       onClick={() => handleSort(key as keyof T)}
                     >
-                      {String(key)}
+                      {HEADER_LABELS[key]}
                       {sort?.key === key &&
                         sort.order &&
-                        (sort.order === 'asc' ? (
-                          <span className="text-sm"> &#708;</span>
-                        ) : (
-                          <span className="text-sm"> &#709;</span>
-                        ))}
+                        (sort.order === 'asc' ? <span> &#708;</span> : <span> &#709;</span>)}
                     </th>
                   ))}
                 </tr>
               </thead>
               <tbody>
                 {currentItems.map((item, rowIndex) => (
-                  <tr key={rowIndex} className="border-b border-[#34373e] hover:bg-[#34373e]">
+                  <tr
+                    key={rowIndex}
+                    className=" border-b-2 last:border-0 border-[#34373e] hover:bg-[#34373e]"
+                  >
                     {Object.entries(item).map(([key, value]) => (
                       <td key={key} className="py-4 px-4 max-w-xs break-words ">
                         {value}
@@ -130,7 +131,7 @@ const HtmlTable = <T extends object>({ data }: TableProps<T>) => {
                   max={totalPages}
                   value={inputPage}
                   onChange={handleInputChange}
-                  className="w-8 px-1 py-1 rounded-md text-center bg-[#1a1a1a] outline-none [&::-webkit-inner-spin-button]:appearance-none caret-transparent"
+                  className="w-8 px-1 py-1 rounded-md text-center bg-[#22222a] outline-none [&::-webkit-inner-spin-button]:appearance-none caret-transparent"
                 />
                 <span className="mx-1">of {totalPages}</span>
               </form>

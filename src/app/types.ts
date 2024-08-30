@@ -10,7 +10,7 @@ export type ResponseData = {
 }
 
 export type FormattedData = {
-  urlData: { url: string; link: JSX.Element }
+  url: string
   totalCount: number
   totalVisitorCount: number
   bounceCount: string
