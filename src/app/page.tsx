@@ -1,7 +1,6 @@
 import HtmlTable from '@/components/Tables/HtmlTable'
 import LibraryTable from '@/components/Tables/LibraryTable'
 import { formatData, getHeaders } from '@/utils/utils'
-import { Divider } from '@mui/material'
 import { type FormattedData, type ResponseData } from './types'
 
 export default async function Home() {
@@ -18,10 +17,10 @@ export default async function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center mb-24 px-8 pt-8 md:px-12 lg:px-24">
       <div className="z-10 w-full max-w-7xl items-center justify-between font-normal text-sm flex flex-col gap-12">
-        <div className="font-semibold text-lg">Table components examples</div>
-        <Divider color="#34373e" sx={{ height: 2, width: '90vw' }} />
+        <div className="w-screen flex justify-center pb-2 font-semibold text-xl border-b-2 border-[#34373e]">
+          Table components examples
+        </div>
         <HtmlTable data={formattedData} />
-        <Divider color="#34373e" sx={{ height: 2, width: '90vw' }} />
         <LibraryTable data={formattedData} headers={headers} />
       </div>
     </main>
