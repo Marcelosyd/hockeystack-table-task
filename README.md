@@ -29,3 +29,4 @@ Access [http://localhost:3000](http://localhost:3000).
 ### Trade offs
 
 - To meet the deadline I kept the pagination logic on the front-end, didn't enable elements per page option and for small screen reponsive design went with horizontal scroll approach.
+- Also did not add a custom pagination to the MUI Table for the input of page number.
