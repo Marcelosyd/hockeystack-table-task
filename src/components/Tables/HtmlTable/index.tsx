@@ -101,10 +101,10 @@ const HtmlTable = <T extends object>({ data, headers }: TableProps<T>) => {
                 {currentItems.map((item, rowIndex) => (
                   <tr
                     key={rowIndex}
-                    className=" border-b-2 last:border-0 border-[#34373e] hover:bg-[#34373e]"
+                    className="h-16 border-b-2 last:border-0 border-[#34373e] hover:bg-[#34373e]"
                   >
                     {Object.entries(item).map(([key, value]) => (
-                      <td key={key} className="py-4 px-4 max-w-xs break-words ">
+                      <td key={key} className="px-4 max-w-xs break-words ">
                         {value}
                       </td>
                     ))}
