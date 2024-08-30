@@ -69,7 +69,7 @@ const HtmlTable = <T extends object>({ data }: TableProps<T>) => {
   return (
     <div className="text-gray-200 w-full">
       <h2 className="text-xl font-bold mb-4">Pure HTML table</h2>
-      <div className="bg-[#282b32] rounded-xl shadow-md shadow-black">
+      <div className="bg-[#282b32] rounded-xl shadow">
         <div className="flex items-center justify-between p-4 border-b-2 border-[#34373e]">
           <h3 className="text-xl font-bold">Pages</h3>
         </div>
