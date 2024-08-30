@@ -29,9 +29,10 @@ const LibraryTable = <T extends GridValidRowModel>({ data, headers }: TableProps
               columns={headers}
               initialState={{ pagination: { paginationModel: { pageSize: 10 } } }}
               pageSizeOptions={[10]}
+              autosizeOnMount
+              autosizeOptions={{ expand: true }}
               disableRowSelectionOnClick
               disableColumnMenu
-              disableColumnResize
               sx={{
                 border: 'none',
                 overflowX: 'scroll',
