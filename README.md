@@ -1,36 +1,31 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+### Hockeystack table task
 
 ## Getting Started
 
-First, run the development server:
+Clone repository:
 
-```bash
-npm run dev
+```
+git clone git@github.com:Marcelosyd/hockeystack-table-task.git
 # or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/Marcelosyd/hockeystack-table-task.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Install dependencies and run dev environment
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+pnpm install
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+pnpm dev
+```
 
-## Learn More
+Access [http://localhost:3000](http://localhost:3000).
 
-To learn more about Next.js, take a look at the following resources:
+# Future improvements / Next steps
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Move pagination, sorting and elements per page logic to the backend API to improve performance and reduce time to load. Cache data with useQuery to avoid unnecessary fetching of same data every time.
+- For narrow screens, instead of using a table with horizontal scrolling, change it to a grid of cards with input to select sorting by and a button for defining the direction.
+- Configure a theme token file to hold styling properties and configure light mode.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+# Trade offs
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- To meet the deadline I kept the pagination logic on the front-end, didn't enable elements per page option and for small screen reponsive design went with horizontal scroll approach.
